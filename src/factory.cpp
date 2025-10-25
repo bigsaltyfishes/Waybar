@@ -42,6 +42,10 @@
 #include "modules/niri/window.hpp"
 #include "modules/niri/workspaces.hpp"
 #endif
+#ifdef HAVE_FHT
+#include "modules/fht/window.hpp"
+#include "modules/fht/workspaces.hpp"
+#endif
 #ifdef HAVE_WAYFIRE
 #include "modules/wayfire/window.hpp"
 #include "modules/wayfire/workspaces.hpp"
@@ -231,6 +235,14 @@ waybar::AModule* waybar::Factory::makeModule(const std::string& name,
     }
     if (ref == "niri/workspaces") {
       return new waybar::modules::niri::Workspaces(id, bar_, config_[name]);
+    }
+#endif
+#ifdef HAVE_FHT
+    if (ref == "fht/window") {
+      return new waybar::modules::fht::Window(id, bar_, config_[name]);
+    }
+    if (ref == "fht/workspaces") {
+      return new waybar::modules::fht::Workspaces(id, bar_, config_[name]);
     }
 #endif
 #ifdef HAVE_WAYFIRE

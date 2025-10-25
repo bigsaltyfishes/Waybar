@@ -347,6 +347,19 @@ if get_option('niri')
     )
 endif
 
+if get_option('fht')
+    add_project_arguments('-DHAVE_FHT', language: 'cpp')
+    src_files += files(
+        'src/modules/fht/backend.cpp',
+        'src/modules/fht/window.cpp',
+        'src/modules/fht/workspaces.cpp',
+    )
+    man_files += files(
+        'man/waybar-fht-window.5.scd',
+        'man/waybar-fht-workspaces.5.scd',
+    )
+endif
+
 if true
     add_project_arguments('-DHAVE_WAYFIRE', language: 'cpp')
     src_files += files(
